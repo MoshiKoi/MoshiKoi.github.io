@@ -1,0 +1,55 @@
+:root {
+    font-weight: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: normal;
+}
+
+header,
+main,
+footer {
+    width: 60%;
+    margin: auto;
+}
+
+main {
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+}
+
+footer {
+    padding: 1em;
+}
+
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: unset;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.post-list {
+    list-style: none;
+}
