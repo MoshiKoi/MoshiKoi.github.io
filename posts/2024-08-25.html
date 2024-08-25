@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indigo's Blog</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Indigo's Blog</a></h1>
+    </header>
+    <main>
+        <h2>An interesting case of function overloading in C++</h2>
+        <p>Posted <time datetime="2024-08-25">2024-08-25</time></p>
+        <p>Aka. Yet Another Reason Why C++ is a Broken Language</p>
+        <p>Consider the following code</p>
+        <pre><code>#include &lt;iostream&gt;
+void foo(int&&) {
+    std::cout << "int\n";
+}
+
+void foo(float&&) {
+    std::cout << "float\n";
+}
+
+int main() {
+    int x = 1;
+    float y = 1.0;
+    foo(x);
+    foo(y);
+}</code></pre>
+        <p>What do you expect this to print? If you think "int" followed by "float", then you'd be wrong. It actually
+            prints them the other way around!</p>
+        <p>This is because <code>int&&</code> is an rvalue reference, meaning it binds to rvalues. <code>x</code>
+            however is an lvalue. But there is hope! An implicit conversion exists from <code>int</code> to
+            <code>float</code>, which produces an rvalue <code>float</code>! And so it does that conversion and calls
+            the <code>float&&</code> overload. <code>y</code> does the same thing, and calls the <code>int&&</code>
+            overload.
+        </p>
+        <p>Gotta love C++</p>
+    </main>
+    <footer>This is where my webring would go... if it existed</footer>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
